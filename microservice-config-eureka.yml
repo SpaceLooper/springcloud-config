@@ -11,14 +11,15 @@ spring:
     
 eureka:
   instance:
-    hostname: eureka6001.com
+    hostname: eureka6001.com # eureka服务端的实例名称
   client:
-    registerWithEureka: false
-    fetchResistry: false
-    serviceUrl:
-      defauleZone: http://eureka6001.com:6001/eureka/
+    registerWithEureka: false # 服务注册，false表示不将自已注册到Eureka服务中
+    fetchRegistry: false # 服务发现，false表示自己不从Eureka服务中获取注册信息
+    serviceUrl: # Eureka客户端与Eureka服务端的交互地址，集群版配置对方的地址，单机版配置自己（如果不配置则默认本机8761端口）
+#   defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+      defaultZone: http://eureka6001.com:6001/eureka/
   server:
-    enable-self-preservation: false   #开发模式禁用自我保护机制
+    enable-self-preservation: false #禁用自我保护模式
 ---
 server:
   port: 6001  # 端口号
@@ -29,11 +30,12 @@ spring:
     
 eureka:
   instance:
-    hostname: eureka6001.com
+    hostname: eureka6001.com # eureka服务端的实例名称
   client:
-    registerWithEureka: false
-    fetchRegistry: false
-    serverUrl:
+    registerWithEureka: false # 服务注册，false表示不将自已注册到Eureka服务中
+    fetchRegistry: false # 服务发现，false表示自己不从Eureka服务中获取注册信息
+    serviceUrl: # Eureka客户端与Eureka服务端的交互地址，集群版配置对方的地址，单机版配置自己（如果不配置则默认本机8761端口）
+#   defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
       defaultZone: http://eureka6001.com:6001/eureka/
   server:
-    enable-selt-preservation: true  #生产环境开启自我保护机制
+    enable-self-preservation: false #禁用自我保护模式
