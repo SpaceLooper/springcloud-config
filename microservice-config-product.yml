@@ -34,7 +34,8 @@ eureka:
   instance:
     instanceId: ${spring.application.name}:${server.port} # 指定实例ID,就不会显示主机名了
     preferIpAddress: true #访问路径可以显示IP地址
-    
+emp: 
+  name: zhangsan
 ---
 server:
   port: 8002
@@ -44,7 +45,7 @@ mybatis:
   type-aliases-package: com.dfxt.springcloud.entities  # 所有Entity别名类所在包
   mapper-locations: classpath:mybatis/mapper/**/*.xml  # mapper映射文件
 spring:
-  profiles: prod   # 开发环境
+  profiles: prod   # 生产环境
   application:
     name: microservice-product-config-bus #这个很重要，这在以后的服务与服务之间相互调用一般都是根据这个name
   datasource:
