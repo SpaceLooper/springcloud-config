@@ -16,7 +16,7 @@ spring:
       enabled: true #是否启用consul
       discovery:
         enabled: true   # 是否去发现其他服务
-        service-name: service-product  # 注册到consul的服务名称。
+        service-name: service-product-bus  # 注册到consul的服务名称。
         register: true   # 配置是否启动注册服务
         health-check-path: /actuator/health
         health-check-interval: 15s  # consul 健康检查频率
