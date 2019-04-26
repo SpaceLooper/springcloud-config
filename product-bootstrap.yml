@@ -56,6 +56,7 @@ management:
         include:
         - "*"   # 暴露所有端点，默认是info ,health
         - hystrix.stream
+        - bus-refresh
   endpoint:
     health:
       show-details: always
@@ -114,6 +115,7 @@ management:
         include:
         - "*"   # 暴露所有端点，默认是info ,health
         - hystrix.stream
+        - bus-refresh
   endpoint:
     health:
       show-details: always
