@@ -16,7 +16,7 @@ spring:
       enabled: true #是否启用consul
       discovery:
         enabled: true   # 是否去发现其他服务
-        service-name: service-product-bus  # 注册到consul的服务名称。
+        service-name: service-product  # 注册到consul的服务名称。
         register: true   # 配置是否启动注册服务
         health-check-path: /actuator/health
         health-check-interval: 15s  # consul 健康检查频率
@@ -32,7 +32,7 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource # 当前数据源操作类型
     driver-class-name: com.mysql.cj.jdbc.Driver # mysql驱动包
-    url: jdbc:mysql://127.0.0.1:3306/springcloud_db01?serverTimezone=GMT%2B8 # 数据库名称
+    url: jdbc:mysql://127.0.0.1:3306/springcloud_db02?serverTimezone=GMT%2B8 # 数据库名称
     username: root
     password: newpassword
     dbcp2:
