@@ -1,6 +1,11 @@
+spring:
+  profiles:
+    active:
+    - dev  # 激活开发环境
+---
 server:
   port: 8003
- 
+
 spring:
   application:
     name: springcloud-product
@@ -35,6 +40,65 @@ spring:
       initial-size: 5 # 初始化连接数
       max-total: 5 # 最大连接数
       max-wait-millis: 150 # 等待连接获取的最大超时时间
+  profiles: dev
+          
+#  mybatis配置
+mybatis:
+  config-location: classpath:mybatis/mybatis.cfg.xml  # mybatis 配置文件所在路径
+  type-aliases-package: com.dfxt.springcloud.entities     # entity 别名类所在包
+  mapper-locations:
+  - classpath:mybatis/mapper/**/*.xml
+# 监控点  
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+        - "*"   # 暴露所有端点，默认是info ,health
+        - hystrix.stream
+  endpoint:
+    health:
+      show-details: always
+
+---
+server:
+  port: 8003
+
+spring:
+  application:
+    name: springcloud-product
+  cloud:
+    consul:
+      host: localhost # consul server的ip地址
+      port: 8500 # consul运行的端口号
+      enabled: true #是否启用consul
+      discovery:
+        enabled: true   # 是否去发现其他服务
+        service-name: service-product  # 注册到consul的服务名称。
+        register: true   # 配置是否启动注册服务
+        health-check-path: /actuator/health
+        health-check-interval: 15s  # consul 健康检查频率
+        tags:
+         - ureprefix-/serverName
+        instance-id: ${spring.application.name}:${server.port}
+        prefer-ip-address: true  # 访问路径可以显示ip
+        default-query-tag: ureprefix-/serverName   
+        query-passing: true  # true  则可返回所有健康检查通过的服务。
+    config:
+      enabled: true
+                
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource # 当前数据源操作类型
+    driver-class-name: com.mysql.cj.jdbc.Driver # mysql驱动包
+    url: jdbc:mysql://127.0.0.1:3306/springcloud_db01?serverTimezone=GMT%2B8 # 数据库名称
+    username: root
+    password: newpassword
+    dbcp2:
+      min-idle: 5 # 数据库连接池的最小维持连接数
+      initial-size: 5 # 初始化连接数
+      max-total: 5 # 最大连接数
+      max-wait-millis: 150 # 等待连接获取的最大超时时间
+  profiles: dev
           
 #  mybatis配置
 mybatis:
